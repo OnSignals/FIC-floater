@@ -4,13 +4,13 @@ class FICFloater {
     const css = String.raw;
 
     this.template = html`
-      <span data-ficfloater-role="position">
-        <span data-ficfloater-role="wrapper">
-          <span data-ficfloater-role="title">{{title}}</span>
-        </span>
+      <aside data-ficfloater-role="position">
+        <a href="{{url}}" title="{{title}}" data-ficfloater-role="wrapper">
+          <h4 data-ficfloater-role="title">{{title}}</h4>
+        </a>
 
-        <button data-ficfloater-role="close">Close</button>
-      </span>
+        <button title="Hide" data-ficfloater-role="hide">Hide</button>
+      </aside>
     `;
 
     this.styles = css`
@@ -38,7 +38,7 @@ class FICFloater {
 
       [data-ficfloater-role="position"] {
         --logo-width: 100px;
-        --logo-height: 80px;
+        --logo-height: 100px;
         --logo-margin-v: 40px;
         --logo-margin-h: 40px;
 
@@ -51,7 +51,7 @@ class FICFloater {
         margin: 0 var(--logo-margin-h) var(--logo-margin-v);
 
         transform: translateY(
-          calc(var(--logo-margin-v) + 20 + var(--logo-height))
+          calc(var(--logo-margin-v) + 20px + var(--logo-height))
         );
 
         transition-property: transform;
@@ -89,7 +89,7 @@ class FICFloater {
         white-space: nowrap;
       }
 
-      [data-ficfloater-role="close"] {
+      [data-ficfloater-role="hide"] {
         position: absolute;
         right: 0;
         top: 0;
@@ -142,8 +142,8 @@ class FICFloater {
 
       @media (max-width: 720px) {
         [data-ficfloater-role="position"] {
-          --logo-width: 60px;
-          --logo-height: 60px;
+          --logo-width: 90px;
+          --logo-height: 90px;
           --logo-margin-v: 20px;
           --logo-margin-h: 20px;
         }
@@ -152,6 +152,7 @@ class FICFloater {
 
     this.pathEnableList = ["/"];
 
+    this.url = "https://fingerscrossed.design";
     this.title = "title...";
 
     this.initialDelay = 1000;
@@ -164,6 +165,7 @@ class FICFloater {
 
     this.isEnabled = false;
     this.isVisible = false;
+    this.isManuallyHidden = false;
     // this.isActive = false;
 
     if (this.pathEnableList.includes(location.pathname)) {
@@ -175,7 +177,10 @@ class FICFloater {
   build() {
     // element
     const element = document.createElement("div");
-    element.innerHTML = this.template.replace("{{title}}", this.title).trim();
+    element.innerHTML = this.template
+      .replace(/{{title}}/gi, this.title)
+      .replace(/{{url}}/gi, this.url)
+      .trim();
 
     this.element = element.firstChild;
 
@@ -265,14 +270,18 @@ class FICFloater {
       this.hide();
     } else if (
       document.scrollingElement.scrollTop < this.scrollThreshold &&
-      !this.isVisible
+      !this.isVisible &&
+      !this.isManuallyHidden
     ) {
       this.show();
     }
   }
 
   onClick(event) {
-    if (event.target.matches("button")) this.hide();
+    if (event.target.matches("button")) {
+      this.isManuallyHidden = true;
+      this.hide();
+    }
   }
 }
 
