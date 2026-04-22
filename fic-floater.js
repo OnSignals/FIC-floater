@@ -39,6 +39,8 @@ class FICFloater {
       [data-ficfloater-role="position"] {
         --logo-width: 100px;
         --logo-height: 80px;
+        --logo-margin-v: 40px;
+        --logo-margin-h: 40px;
 
         --logo-src: url("/logo.svg");
 
@@ -46,9 +48,11 @@ class FICFloater {
         left: 0;
         bottom: 0;
 
-        margin: 0 40px 40px;
+        margin: 0 var(--logo-margin-h) var(--logo-margin-v);
 
-        transform: translateY(calc(60px + var(--logo-height)));
+        transform: translateY(
+          calc(var(--logo-margin-v) + 20 + var(--logo-height))
+        );
 
         transition-property: transform;
         transition-duration: 500ms;
@@ -94,9 +98,9 @@ class FICFloater {
         appearance: none;
 
         display: block;
-        width: 24px;
-        height: 24px;
-        margin: -12px;
+        width: 20px;
+        height: 20px;
+        margin: -10px;
         padding: 0;
         overflow: hidden;
         white-space: nowrap;
@@ -107,6 +111,8 @@ class FICFloater {
         border-radius: 50%;
 
         cursor: pointer;
+
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 
         &::before,
         &::after {
@@ -131,6 +137,15 @@ class FICFloater {
 
         &::after {
           transform: rotate(45deg);
+        }
+      }
+
+      @media (max-width: 720px) {
+        [data-ficfloater-role="position"] {
+          --logo-width: 60px;
+          --logo-height: 60px;
+          --logo-margin-v: 20px;
+          --logo-margin-h: 20px;
         }
       }
     `;
