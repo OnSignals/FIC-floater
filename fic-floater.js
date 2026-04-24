@@ -150,7 +150,7 @@ class FICFloater {
       }
     `;
 
-    this.pathEnableList = ["/"];
+    this.pathEnableList = [];
 
     this.url = "https://fingerscrossed.design";
     this.title = "title...";
