@@ -42,7 +42,7 @@ class FICFloater {
         --logo-margin-v: 40px;
         --logo-margin-h: 40px;
 
-        --logo-src: url("/logo.svg");
+        --logo-src: url("https://cdn.shopify.com/s/files/1/1688/7473/files/FC_Musi-Spezi.svg?v=1777544853");
 
         position: fixed;
         left: 0;
