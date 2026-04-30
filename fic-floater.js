@@ -47,6 +47,7 @@ class FICFloater {
         position: fixed;
         left: 0;
         bottom: 0;
+        z-index: 100;
 
         margin: 0 var(--logo-margin-h) var(--logo-margin-v);
 
