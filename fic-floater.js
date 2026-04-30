@@ -152,7 +152,7 @@ class FICFloater {
 
     this.pathEnableList = [];
 
-    this.url = "https://fingerscrossed.design";
+    this.url = "https://open.spotify.com/playlist/5ElZjsvy8E0OWrutuQouvT?si=cb178e9208cf4edf";
     this.title = "title...";
 
     this.initialDelay = 1000;
