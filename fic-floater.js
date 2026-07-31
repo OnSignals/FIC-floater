@@ -153,7 +153,7 @@ class FICFloater {
 
     this.pathEnableList = ['/'];
 
-    this.url = "https://open.spotify.com/playlist/5jYcMU6Wpake4y5YEsOEKz";
+    this.url = "https://open.spotify.com/playlist/6gbkh3EGjRI5ew0kuA7IbJ";
     this.title = "FC Sounds – July 26";
 
     this.initialDelay = 1000;
